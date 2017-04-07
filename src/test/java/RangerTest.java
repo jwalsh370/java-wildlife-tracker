@@ -13,4 +13,9 @@ public class RangerTest {
     Ranger testRanger = new Ranger("Rick", "rick@rick.com", 436);
     assertEquals(true, testRanger instanceof Ranger);
   }
+
+  @Test public void getEmail_returnsEmailAttribute_true() {
+    Ranger testRanger = new Ranger("Rick", "rick@rick.com", 436);
+    assertEquals("rick@rick.com", testRanger.getEmail());
+  }
 }
