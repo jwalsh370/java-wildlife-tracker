@@ -12,7 +12,8 @@ public class EndangeredAnimal extends AnimalView implements DatabaseManagement {
     this.id = id;
     this.health = health;
     this.age = age;
-    range = MAX_RANGE_LEVEL / 2;
+    range = MAX_RANGE_LEVEL;
+  }
 
   public String getHealth() {
     return health;

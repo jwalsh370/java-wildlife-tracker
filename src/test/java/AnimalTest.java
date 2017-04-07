@@ -87,4 +87,11 @@ public class AnimalTest {
     assertEquals(rightNow.getDay(), savedTestAnimalViewDate.getDay());
   }
 
+  @Test
+    public void animal_instantiatesWithRange(){
+    Animal testAnimal = new Animal("Deer");
+      assertEquals(testAnimal.getRange(), (Animal.MAX_RANGE_LEVEL));
+    }
+
+
 }

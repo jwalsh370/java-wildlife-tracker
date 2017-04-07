@@ -75,4 +75,10 @@ public class EndangeredAnimalTest {
     assertEquals(rightNow.getDay(), savedTestEndangeredAnimalViewDate.getDay());
   }
 
+  @Test
+    public void animal_instantiatesWithRange(){
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+      assertEquals(testEndangeredAnimal.getRange(), (EndangeredAnimal.MAX_RANGE_LEVEL));
+    }
+
 }
