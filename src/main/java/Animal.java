@@ -2,22 +2,16 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal {
-  public String name;
-  public int id;
+public class Animal extends AnimalView implements DatabaseManagement {
+
 
   public Animal(String name) {
     this.name = name;
     this.id = id;
+
   }
 
-  public String getName() {
-    return name;
-  }
 
-  public int getId() {
-    return id;
-  }
 
   @Override
   public boolean equals(Object otherAnimal) {
@@ -29,9 +23,10 @@ public class Animal {
     }
   }
 
+  @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO animals (name) VALUES (:name);";
+      String sql = "INSERT INTO animals (name, viewDate) VALUES (:name, now());";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .executeUpdate()

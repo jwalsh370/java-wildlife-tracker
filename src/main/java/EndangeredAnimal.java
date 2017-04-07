@@ -2,9 +2,7 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EndangeredAnimal {
-  public String name;
-  public int id;
+public class EndangeredAnimal extends AnimalView implements DatabaseManagement {
   public boolean endangered;
   private String health;
   private String age;
@@ -24,13 +22,13 @@ public class EndangeredAnimal {
     return age;
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public int getId() {
-    return id;
-  }
+  // public String getName() {
+  //   return name;
+  // }
+  //
+  // public int getId() {
+  //   return id;
+  // }
 
   @Override
   public boolean equals(Object otherEndangeredAnimal) {
@@ -41,6 +39,7 @@ public class EndangeredAnimal {
       return this.getName().equals(newEndangeredAnimal.getName()) && this.getHealth().equals(newEndangeredAnimal.getHealth()) && this.getAge().equals(newEndangeredAnimal.getAge());
     }
   }
+
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {

@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Sighting {
+public class Sighting implements DatabaseManagement {
   private int animal_id;
   private String location;
   private String ranger_name;
@@ -42,6 +42,8 @@ public class Sighting {
     }
   }
 
+
+  @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO sightings (animal_id, location, ranger_name) VALUES (:animal_id, :location, :ranger_name);";

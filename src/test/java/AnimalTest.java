@@ -4,6 +4,9 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.text.DateFormat;
 
 public class AnimalTest {
   @Rule
@@ -73,6 +76,15 @@ public class AnimalTest {
   @Test
   public void find_returnsNullWhenNoAnimalFound_null() {
     assertTrue(Animal.find(999) == null);
+  }
+
+  @Test
+  public void save_recordsViewDateinDatabase() {
+    Animal testAnimal = new Animal("Deer");
+    testAnimal.save();
+    Timestamp savedTestAnimalViewDate = Animal.find(testAnimal.getId()).getViewDate();
+    Timestamp rightNow = new Timestamp(new Date().getTime());
+    assertEquals(rightNow.getDay(), savedTestAnimalViewDate.getDay());
   }
 
 }

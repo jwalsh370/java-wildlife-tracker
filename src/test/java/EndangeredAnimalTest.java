@@ -4,6 +4,8 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class EndangeredAnimalTest {
   @Rule
@@ -62,6 +64,15 @@ public class EndangeredAnimalTest {
     testEndangeredAnimal.save();
     testEndangeredAnimal.updateAge("Adult");
     assertEquals("Adult", EndangeredAnimal.find(testEndangeredAnimal.getId()).getAge());
+  }
+
+  @Test
+  public void save_recordsViewDateinDatabase() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+    testEndangeredAnimal.save();
+    Timestamp savedTestEndangeredAnimalViewDate = EndangeredAnimal.find(testEndangeredAnimal.getId()).getViewDate();
+    Timestamp rightNow = new Timestamp(new Date().getTime());
+    assertEquals(rightNow.getDay(), savedTestEndangeredAnimalViewDate.getDay());
   }
 
 }
