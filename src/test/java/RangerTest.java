@@ -29,7 +29,7 @@ public class RangerTest {
     Ranger testRanger = new Ranger("Rick", "rick@rick.com", 436);
     testRanger.save();
     Ranger savedRanger = Ranger.all().get(0);
-    assertEquals(testRanger.getId(), savedRanger.getId()); 
+    assertEquals(testRanger.getId(), savedRanger.getId());
   }
 
   @Test
@@ -40,6 +40,15 @@ public class RangerTest {
     secondRanger.save();
     assertEquals(true, Ranger.all().get(0).equals(firstRanger));
     assertEquals(true, Ranger.all().get(1).equals(secondRanger));
+  }
+
+  @Test
+  public void find_returnsRangerWithSameId_secondRanger() {
+    Ranger firstRanger = new Ranger("Rick", "rick@rick.com", 436);
+    firstRanger.save();
+    Ranger secondRanger = new Ranger("Jenny", "JenE@Me.com", 1414);
+    secondRanger.save();
+    assertEquals(Ranger.find(secondRanger.getId()), secondRanger);
   }
 
 
