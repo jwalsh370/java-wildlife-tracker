@@ -93,5 +93,13 @@ public class AnimalTest {
       assertEquals(testAnimal.getRange(), (Animal.MAX_RANGE_LEVEL));
     }
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void range_throwsExceptionIfRangeIsatMaxValue() {
+      Animal testAnimal = new Animal("Dog");
+        for(int i = Animal.MIN_ALL_LEVELS; i <= (Animal.MAX_RANGE_LEVEL); i++){
+          testAnimal.range();
+        }
+    }
+
 
 }
