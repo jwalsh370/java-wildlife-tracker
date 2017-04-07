@@ -81,4 +81,12 @@ public class EndangeredAnimalTest {
       assertEquals(testEndangeredAnimal.getRange(), (EndangeredAnimal.MAX_RANGE_LEVEL));
     }
 
+  @Test(expected = UnsupportedOperationException.class)
+  public void range_throwsExceptionIfRangeIsatMaxValue() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+      for(int i = EndangeredAnimal.MIN_ALL_LEVELS; i <= (EndangeredAnimal.MAX_RANGE_LEVEL); i++){
+        testEndangeredAnimal.range();
+      }
+  }
+
 }
