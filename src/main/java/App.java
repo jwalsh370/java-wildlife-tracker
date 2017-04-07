@@ -58,13 +58,6 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/ranger/new", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      model.put("rangers", Ranger.all());
-      model.put("template", "templates/ranger-form.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
     post("/animal/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       boolean endangered = request.queryParamsValues("endangered")!=null;
@@ -86,6 +79,13 @@ public class App {
       response.redirect("/");
         return null;
       });
+
+      get("/ranger/new", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("rangers", Ranger.all());
+        model.put("template", "templates/ranger-form.vtl");
+        return new ModelAndView(model, layout);
+      }, new VelocityTemplateEngine());
 
       post("/ranger/new", (request, response) -> {
         Map<String, Object> model = new HashMap<String, Object>();

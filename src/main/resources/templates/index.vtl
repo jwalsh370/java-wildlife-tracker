@@ -6,9 +6,14 @@
 
 <h3> Report Non-Endangered Animal Sighting </h3>
 <form action="/sighting" method="post">
-  #if($animals.size() >= 0)
+  <!-- #if($rangers.size() >= 0)
     <label>Select Ranger</label>
     <select name="rangerSelected">
+      #foreach($ranger in $rangers)
+        <option value="$ranger.getId()">$ranger.getName()</option>
+      #end
+    </select> -->
+  #if($animals.size() >= 0)
     <label>Select Animal</label>
     <select name="animalSelected">
       #foreach($animal in $animals)
@@ -24,13 +29,17 @@
   #end
 </form>
 
-<hr>
 
 <h3> Report Endangered Animal Sighting </h3>
 <form action="/endangered_sighting" method="post">
-  #if($endangeredAnimals.size() >= 0)
+  <!-- #if($rangers.size() >= 0)
     <label>Select Ranger</label>
     <select name="rangerSelected">
+      #foreach($ranger in $rangers)
+        <option value="$ranger.getId()">$ranger.getName()</option>
+      #end
+    </select> -->
+  #if($endangeredAnimals.size() >= 0)
     <label>Select Endangered Animal</label>
     <select name="endangeredAnimalSelected">
       #foreach($endangered_animal in $endangeredAnimals)
@@ -70,19 +79,18 @@
       <h4>$animal.getName()</h4>
       <h4>$animal.getSightings().size() Reported Sighting(s)</h4>
       <p>Click for details</p>
-    </a>
-  #end
-#end
 
-<h3>All Rangers</h3>
-#if ($rangers.size() == 0)
-  <a href="/ranger/new">Add Ranger to Database</a>
-#else
-  #foreach ($ranger in $rangers)
-    <a href="/ranger/$ranger.getId()" class="thumbnail">
-      <h4>$ranger.getName()</h4>
-      <h4>$ranger.getSightings().size() Reported Sighting(s)</h4>
-      <p>Click for details</p>
-    </a>
+      <h3>All Rangers</h3>
+      <!-- /*#if ($rangerss.size() == 0)
+        <a href="/ranger/new">Add Ranger to Database</a>
+      #else
+        #foreach ($ranger in $rangers)
+        <a href="/ranger/$ranger.getId()" class="thumbnail">
+            <h4>$ranger.getName()</h4>
+            <h4>$ranger.getSightings().size() Reported Sighting(s)</h4>
+            <p>Click for details</p>
+          </a>
+        #end
+      #end*/ -->
   #end
 #end

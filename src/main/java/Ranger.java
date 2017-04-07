@@ -34,9 +34,11 @@ public class Ranger extends AnimalView implements DatabaseManagement {
   @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO rangers (name, viewDate) VALUES (:name, now());";
+      String sql = "INSERT INTO rangers (name, email, badgeNumber, viewDate) VALUES (:name, :email, :badgeNumber, now());";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
+        .addParameter("email", this.email)
+        .addParameter("badgeNumber", this.badgeNumber)
         .executeUpdate()
         .getKey();
     }
