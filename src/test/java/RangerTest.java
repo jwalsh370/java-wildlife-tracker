@@ -29,7 +29,7 @@ public class RangerTest {
     Ranger testRanger = new Ranger("Rick", "rick@rick.com", 436);
     testRanger.save();
     Ranger savedRanger = Ranger.all().get(0);
-    assertEquals(testRanger.getId(), savedRanger.getId());
+    assertEquals(testRanger.getId(), savedRanger.getId()); 
   }
 
   @Test
