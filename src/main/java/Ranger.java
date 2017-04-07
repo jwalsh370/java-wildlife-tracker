@@ -89,6 +89,16 @@ public class Ranger extends AnimalView implements DatabaseManagement {
     }
   }
 
+  public List<Animal> getAnimals() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals WHERE ranger_id=:id;";
+        List<Animal> animals = con.createQuery(sql)
+          .addParameter("id", id)
+          .executeAndFetch(Animal.class);
+      return animals;
+    }
+  }
+
   public void updateEmail(String email) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE rangers SET email=:email WHERE id=:id;";

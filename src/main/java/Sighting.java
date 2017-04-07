@@ -78,4 +78,14 @@ public class Sighting implements DatabaseManagement {
     }
   }
 
+  public List<Ranger> getRangers() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM rangers WHERE ranger_id=:id;";
+        List<Ranger> rangers = con.createQuery(sql)
+          .addParameter("id", id)
+          .executeAndFetch(Ranger.class);
+      return rangers;
+    }
+  }
+
 }
