@@ -18,4 +18,11 @@ public class RangerTest {
     Ranger testRanger = new Ranger("Rick", "rick@rick.com", 436);
     assertEquals("rick@rick.com", testRanger.getEmail());
   }
+
+  @Test public void getBadgeNumber_returnsBadgeAttribute_true() {
+    Ranger testRanger = new Ranger("Rick", "rick@rick.com", 436);
+    assertEquals(436, testRanger.getBadgeNumber());
+  }
+
+
 }
