@@ -51,5 +51,22 @@ public class RangerTest {
     assertEquals(Ranger.find(secondRanger.getId()), secondRanger);
   }
 
+  @Test
+  public void update_updatesEmailAttribute_true() {
+    Ranger testRanger = new Ranger("Rick", "rick@rick.com", 436);
+    testRanger.save();
+    testRanger.updateEmail("Rickyrickrick@Rick.com");
+    assertEquals("Rickyrickrick@Rick.com", Ranger.find(testRanger.getId()).getEmail());
+  }
+
+  @Test
+  public void update_updatesBadgeNumberAttribute_true() {
+    Ranger testRanger = new Ranger("Rick", "rick@rick.com", 436);
+    testRanger.save();
+    testRanger.updateBadgeNumber(445);
+    assertEquals(445, Ranger.find(testRanger.getId()).getBadgeNumber());
+  }
+
+
 
 }

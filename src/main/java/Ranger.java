@@ -89,6 +89,26 @@ public class Ranger extends AnimalView implements DatabaseManagement {
     }
   }
 
+  public void updateEmail(String email) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE rangers SET email=:email WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .addParameter("email", email)
+        .executeUpdate();
+    }
+  }
+
+  public void updateBadgeNumber(int badgeNumber) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE rangers SET badgeNumber=:badgeNumber WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("badgeNumber", badgeNumber)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
 
 
 }
