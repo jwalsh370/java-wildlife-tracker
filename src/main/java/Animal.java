@@ -8,6 +8,7 @@ public class Animal extends AnimalView implements DatabaseManagement {
   public Animal(String name) {
     this.name = name;
     this.id = id;
+    range = MAX_RANGE_LEVEL / 2;
 
   }
 

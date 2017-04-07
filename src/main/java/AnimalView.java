@@ -9,6 +9,11 @@ public abstract class AnimalView {
   public String name;
   public int id;
   public Timestamp viewDate;
+  public int range;
+
+
+public static final int MAX_RANGE_LEVEL = 30;
+
 
   public String getName(){
     return name;
@@ -21,6 +26,10 @@ public abstract class AnimalView {
 
   public int getId() {
       return id;
+  }
+
+  public int getRange() {
+    return range;
   }
 
 }
