@@ -3,11 +3,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ranger extends AnimalView implements DatabaseManagement {
+  private String email;
+  private int badgeNumber;
 
   public Ranger(String name, String email, int badgeNumber){
     this.name = name;
     this.email = email;
     this.badgeNumber = badgeNumber;
+    this.id = id;
   }
 
   public String getEmail() {
