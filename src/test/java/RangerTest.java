@@ -24,5 +24,23 @@ public class RangerTest {
     assertEquals(436, testRanger.getBadgeNumber());
   }
 
+  @Test
+  public void save_assignsIdAndSavesObjectToDatabase() {
+    Ranger testRanger = new Ranger("Rick", "rick@rick.com", 436);
+    testRanger.save();
+    Ranger savedRanger = Ranger.all().get(0);
+    assertEquals(testRanger.getId(), savedRanger.getId());
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfRanger_true() {
+    Ranger firstRanger = new Ranger("Rick", "rick@rick.com", 436);
+    firstRanger.save();
+    Ranger secondRanger = new Ranger("Rick", "rick@rick.com", 436);
+    secondRanger.save();
+    assertEquals(true, Ranger.all().get(0).equals(firstRanger));
+    assertEquals(true, Ranger.all().get(1).equals(secondRanger));
+  }
+
 
 }
