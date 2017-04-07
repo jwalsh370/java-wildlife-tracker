@@ -22,13 +22,6 @@ public class EndangeredAnimal extends AnimalView implements DatabaseManagement {
     return age;
   }
 
-  // public String getName() {
-  //   return name;
-  // }
-  //
-  // public int getId() {
-  //   return id;
-  // }
 
   @Override
   public boolean equals(Object otherEndangeredAnimal) {
@@ -43,7 +36,7 @@ public class EndangeredAnimal extends AnimalView implements DatabaseManagement {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO endangered_animals (name, health, age) VALUES (:name, :health, :age);";
+      String sql = "INSERT INTO endangered_animals (name, health, age, viewDate) VALUES (:name, :health, :age, now());";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .addParameter("health", this.health)
