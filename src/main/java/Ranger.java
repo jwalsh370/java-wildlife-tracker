@@ -108,7 +108,4 @@ public class Ranger extends AnimalView implements DatabaseManagement {
         .executeUpdate();
     }
   }
-
-
-
 }

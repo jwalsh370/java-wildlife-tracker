@@ -4,6 +4,8 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class RangerTest {
   @Rule
@@ -65,6 +67,15 @@ public class RangerTest {
     testRanger.save();
     testRanger.updateBadgeNumber(445);
     assertEquals(445, Ranger.find(testRanger.getId()).getBadgeNumber());
+  }
+
+  @Test
+  public void save_recordsViewDateinDatabase() {
+    Ranger testRanger = new Ranger("Rick", "rick@rick.com", 436);
+    testRanger.save();
+    Timestamp savedTestRangerViewDate = Ranger.find(testRanger.getId()).getViewDate();
+    Timestamp rightNow = new Timestamp(new Date().getTime());
+    assertEquals(rightNow.getDay(), savedTestRangerViewDate.getDay());
   }
 
 
