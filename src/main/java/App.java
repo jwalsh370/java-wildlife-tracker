@@ -58,6 +58,13 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/ranger/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("rangers", Ranger.all());
+      model.put("template", "templates/ranger-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     post("/animal/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       boolean endangered = request.queryParamsValues("endangered")!=null;
@@ -80,11 +87,31 @@ public class App {
         return null;
       });
 
+      post("/ranger/new", (request, response) -> {
+        Map<String, Object> model = new HashMap<String, Object>();
+          String name = request.queryParams("name");
+          String email = request.queryParams("email");
+          int badgeNumber = Integer.parseInt(request.queryParams("badgeNumber"));
+          Ranger ranger = new Ranger(name, email, badgeNumber);
+          ranger.save();
+          model.put("rangers", Ranger.all());
+         response.redirect("/");
+          return null;
+        });
+
     get("/animal/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Animal animal = Animal.find(Integer.parseInt(request.params("id")));
       model.put("animal", animal);
       model.put("template", "templates/animal.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/ranger/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Ranger ranger = Ranger.find(Integer.parseInt(request.params("id")));
+      model.put("ranger", ranger);
+      model.put("template", "templates/ranger.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

@@ -1,11 +1,14 @@
 <h1>Report a Wildlife Sighting</h1>
 
 <h3><a href="/animal/new">Add Animal to System</a></h3>
+<h3><a href="/ranger/new">Add Ranger to System</a></h3>
 <hr>
 
 <h3> Report Non-Endangered Animal Sighting </h3>
 <form action="/sighting" method="post">
   #if($animals.size() >= 0)
+    <label>Select Ranger</label>
+    <select name="rangerSelected">
     <label>Select Animal</label>
     <select name="animalSelected">
       #foreach($animal in $animals)
@@ -26,6 +29,8 @@
 <h3> Report Endangered Animal Sighting </h3>
 <form action="/endangered_sighting" method="post">
   #if($endangeredAnimals.size() >= 0)
+    <label>Select Ranger</label>
+    <select name="rangerSelected">
     <label>Select Endangered Animal</label>
     <select name="endangeredAnimalSelected">
       #foreach($endangered_animal in $endangeredAnimals)
@@ -64,6 +69,19 @@
     <a href="/animal/$animal.getId()" class="thumbnail">
       <h4>$animal.getName()</h4>
       <h4>$animal.getSightings().size() Reported Sighting(s)</h4>
+      <p>Click for details</p>
+    </a>
+  #end
+#end
+
+<h3>All Rangers</h3>
+#if ($rangers.size() == 0)
+  <a href="/ranger/new">Add Ranger to Database</a>
+#else
+  #foreach ($ranger in $rangers)
+    <a href="/ranger/$ranger.getId()" class="thumbnail">
+      <h4>$ranger.getName()</h4>
+      <h4>$ranger.getSightings().size() Reported Sighting(s)</h4>
       <p>Click for details</p>
     </a>
   #end
