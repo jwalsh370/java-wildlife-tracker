@@ -40,7 +40,8 @@ SET default_with_oids = false;
 CREATE TABLE animals (
     id integer NOT NULL,
     name character varying,
-    viewdate timestamp without time zone
+    viewdate timestamp without time zone,
+    ranger_id integer
 );
 
 
@@ -111,7 +112,8 @@ CREATE TABLE endangered_animals (
     name character varying,
     health character varying,
     age character varying,
-    viewdate timestamp without time zone
+    viewdate timestamp without time zone,
+    ranger_id integer
 );
 
 
@@ -183,7 +185,8 @@ CREATE TABLE sightings (
     animal_id integer,
     location character varying,
     ranger_name character varying,
-    viewdate timestamp without time zone
+    viewdate timestamp without time zone,
+    ranger_id integer
 );
 
 
@@ -249,7 +252,8 @@ ALTER TABLE ONLY sightings ALTER COLUMN id SET DEFAULT nextval('sightings_id_seq
 -- Data for Name: animals; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY animals (id, name, viewdate) FROM stdin;
+COPY animals (id, name, viewdate, ranger_id) FROM stdin;
+1	spider	2017-04-10 13:45:49.874948	\N
 \.
 
 
@@ -257,7 +261,7 @@ COPY animals (id, name, viewdate) FROM stdin;
 -- Name: animals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('animals_id_seq', 1, false);
+SELECT pg_catalog.setval('animals_id_seq', 1, true);
 
 
 --
@@ -279,10 +283,10 @@ SELECT pg_catalog.setval('animalviews_id_seq', 1, false);
 -- Data for Name: endangered_animals; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY endangered_animals (id, name, health, age, viewdate) FROM stdin;
-1	Canine	Okay	Young	\N
-2	Marsupial	Okay	Young	2017-04-07 12:15:45.631677
-3	chupacabra	Ill	Adult	2017-04-07 12:41:36.693127
+COPY endangered_animals (id, name, health, age, viewdate, ranger_id) FROM stdin;
+1	Canine	Okay	Young	\N	\N
+2	Marsupial	Okay	Young	2017-04-07 12:15:45.631677	\N
+3	chupacabra	Ill	Adult	2017-04-07 12:41:36.693127	\N
 \.
 
 
@@ -304,6 +308,14 @@ COPY rangers (id, name, email, badgenumber, viewdate) FROM stdin;
 4	Ron	\N	\N	2017-04-07 12:41:07.240814
 5	jon	\N	\N	2017-04-07 12:48:21.934154
 6	rick	rickityrick@ricky.com	451	2017-04-07 12:50:19.378431
+7	Rick	rickityRick@ricky.com	444	2017-04-10 12:42:04.936072
+8	jahan	jwal	123	2017-04-10 12:56:34.696095
+9	jwalsh	jwals370	3332	2017-04-10 12:58:49.235021
+10	new	email	111	2017-04-10 12:59:05.520401
+11	tyrone	ttime@tt.com	554	2017-04-10 13:00:49.113527
+12	rick	rickityRick@ricky.com	222	2017-04-10 13:28:13.548105
+13	rick	rickityRick@ricky.com	222	2017-04-10 13:30:04.64578
+14	Rick	rickityRick@ricky.com	356	2017-04-10 13:45:32.920075
 \.
 
 
@@ -311,15 +323,15 @@ COPY rangers (id, name, email, badgenumber, viewdate) FROM stdin;
 -- Name: rangers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('rangers_id_seq', 6, true);
+SELECT pg_catalog.setval('rangers_id_seq', 14, true);
 
 
 --
 -- Data for Name: sightings; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY sightings (id, animal_id, location, ranger_name, viewdate) FROM stdin;
-1	1	Michigan	Juniper	\N
+COPY sightings (id, animal_id, location, ranger_name, viewdate, ranger_id) FROM stdin;
+1	1	Michigan	Juniper	\N	\N
 \.
 
 

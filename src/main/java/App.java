@@ -71,7 +71,7 @@ public class App {
         model.put("endangeredAnimals", EndangeredAnimal.all());
       } else {
         String name = request.queryParams("name");
-        Animal animal = new Animal(name);
+        Animal animal = new Animal(name, 1);
         animal.save();
         model.put("animals", Animal.all());
         model.put("endangeredAnimals", EndangeredAnimal.all());

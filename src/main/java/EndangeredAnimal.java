@@ -6,13 +6,18 @@ public class EndangeredAnimal extends AnimalView implements DatabaseManagement {
   public boolean endangered;
   private String health;
   private String age;
-
+  private int ranger_id;
   public EndangeredAnimal(String name, String health, String age) {
     this.name = name;
     this.id = id;
     this.health = health;
     this.age = age;
     range = MAX_RANGE_LEVEL;
+    this.ranger_id = ranger_id;
+  }
+
+  public int getRanger_id() {
+    return ranger_id;
   }
 
   public String getHealth() {
@@ -58,10 +63,10 @@ public class EndangeredAnimal extends AnimalView implements DatabaseManagement {
   public static EndangeredAnimal find(int id) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM endangered_animals WHERE id=:id;";
-      EndangeredAnimal endangeredanimal = con.createQuery(sql)
+      EndangeredAnimal endangeredAnimal = con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetchFirst(EndangeredAnimal.class);
-      return endangeredanimal;
+      return endangeredAnimal;
     }
   }
 

@@ -3,13 +3,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Animal extends AnimalView implements DatabaseManagement {
+  private int ranger_id;
 
-
-  public Animal(String name) {
+  public Animal(String name, int ranger_id) {
     this.name = name;
     this.id = id;
     range = MAX_RANGE_LEVEL;
+    this.ranger_id = ranger_id;
 
+  }
+
+  public int getRanger_id() {
+    return ranger_id;
   }
 
 

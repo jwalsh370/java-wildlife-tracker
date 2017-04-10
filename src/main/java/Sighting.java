@@ -8,12 +8,18 @@ public class Sighting implements DatabaseManagement {
   private String location;
   private String ranger_name;
   private int id;
+  private int ranger_id;
 
   public Sighting(int animal_id, String location, String ranger_name) {
     this.animal_id = animal_id;
     this.location = location;
     this.ranger_name = ranger_name;
     this.id = id;
+    this.ranger_id = ranger_id;
+  }
+
+  public int getRanger_id() {
+    return ranger_id;
   }
 
   public int getId() {

@@ -14,26 +14,26 @@ public class AnimalTest {
 
   @Test
   public void animal_instantiatesCorrectly_false() {
-    Animal testAnimal = new Animal("Deer");
+    Animal testAnimal = new Animal("Deer", 1);
     assertEquals(true, testAnimal instanceof Animal);
   }
 
   @Test
   public void getName_animalInstantiatesWithName_Deer() {
-    Animal testAnimal = new Animal("Deer");
+    Animal testAnimal = new Animal("Deer", 1);
     assertEquals("Deer", testAnimal.getName());
   }
 
   @Test
   public void equals_returnsTrueIfNameIsTheSame_false() {
-    Animal firstAnimal = new Animal("Deer");
-    Animal anotherAnimal = new Animal("Deer");
+    Animal firstAnimal = new Animal("Deer", 1);
+    Animal anotherAnimal = new Animal("Deer", 1);
     assertTrue(firstAnimal.equals(anotherAnimal));
   }
 
   @Test
   public void save_assignsIdToObjectAndSavesObjectToDatabase() {
-    Animal testAnimal = new Animal("Deer");
+    Animal testAnimal = new Animal("Deer", 1);
     testAnimal.save();
     Animal savedAnimal = Animal.all().get(0);
     assertEquals(testAnimal.getId(), savedAnimal.getId());
@@ -41,9 +41,9 @@ public class AnimalTest {
 
   @Test
   public void all_returnsAllInstancesOfAnimal_false() {
-    Animal firstAnimal = new Animal("Deer");
+    Animal firstAnimal = new Animal("Deer",1);
     firstAnimal.save();
-    Animal secondAnimal = new Animal("Black Bear");
+    Animal secondAnimal = new Animal("Black Bear", 2);
     secondAnimal.save();
     assertEquals(true, Animal.all().get(0).equals(firstAnimal));
     assertEquals(true, Animal.all().get(1).equals(secondAnimal));
@@ -51,23 +51,23 @@ public class AnimalTest {
 
   @Test
   public void find_returnsAnimalWithSameId_secondAnimal() {
-    Animal firstAnimal = new Animal("Deer");
+    Animal firstAnimal = new Animal("Deer", 1);
     firstAnimal.save();
-    Animal secondAnimal = new Animal("Black Bear");
+    Animal secondAnimal = new Animal("Black Bear", 2);
     secondAnimal.save();
     assertEquals(Animal.find(secondAnimal.getId()), secondAnimal);
   }
 
   @Test
   public void delete_deletesAnimalFromDatabase_0() {
-    Animal testAnimal = new Animal("Deer");
+    Animal testAnimal = new Animal("Deer", 1);
     testAnimal.save();
     testAnimal.delete();
     assertEquals(0, Animal.all().size());
   }
 
   public void updateName_updatesAnimalNameInDatabase_String() {
-    Animal testAnimal = new Animal("Deer");
+    Animal testAnimal = new Animal("Deer", 1);
     testAnimal.save();
     testAnimal.updateName("Buck");
     assertEquals("Buck", testAnimal.getName());
@@ -80,7 +80,7 @@ public class AnimalTest {
 
   @Test
   public void save_recordsViewDateinDatabase() {
-    Animal testAnimal = new Animal("Deer");
+    Animal testAnimal = new Animal("Deer", 1);
     testAnimal.save();
     Timestamp savedTestAnimalViewDate = Animal.find(testAnimal.getId()).getViewDate();
     Timestamp rightNow = new Timestamp(new Date().getTime());
@@ -89,13 +89,13 @@ public class AnimalTest {
 
   @Test
     public void animal_instantiatesWithRange(){
-    Animal testAnimal = new Animal("Deer");
+    Animal testAnimal = new Animal("Deer", 1);
       assertEquals(testAnimal.getRange(), (Animal.MAX_RANGE_LEVEL));
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void range_throwsExceptionIfRangeIsatMaxValue() {
-      Animal testAnimal = new Animal("Dog");
+      Animal testAnimal = new Animal("Dog", 1);
         for(int i = Animal.MIN_ALL_LEVELS; i <= (Animal.MAX_RANGE_LEVEL); i++){
           testAnimal.range();
         }
